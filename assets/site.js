@@ -69,9 +69,9 @@
     }
   }
 
-  // Kontaktformular: Platzhalter, bis der n8n-Webhook angebunden ist
-  // TODO: WEBHOOK_URL eintragen (z. B. https://dein-n8n/webhook/codenova-contact) – dann wird per fetch gesendet.
-  const WEBHOOK_URL = "";
+  // Kontaktformular → n8n-Workflow „CodeNova Kontaktformular“ (CodeNova Labs/n8n/codenova-kontaktformular.json)
+  // WEBHOOK_URL = Production URL des Webhooks, z. B. https://dein-n8n/webhook/codenova-contact (nicht /webhook-test/)
+  const WEBHOOK_URL = "https://n8n.ubxplanner.com/webhook/codenova-contact";
   const form = document.getElementById("contact-form");
   if (form) {
     const msg = form.querySelector(".form-msg");
@@ -90,11 +90,19 @@
       msg.textContent = "> Sending …";
       try {
         const res = await fetch(WEBHOOK_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
+        if (res.status === 429) {
+          msg.textContent = "> Too many messages in a short time. Please try again in an hour.";
+          return;
+        }
+        if (res.status === 400) {
+          msg.textContent = "> Please check your name, email and message.";
+          return;
+        }
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
         msg.textContent = "> Message sent. We’ll get back to you soon.";
       } catch {
-        msg.textContent = "> Something went wrong. Please try again later.";
+        msg.textContent = "> Something went wrong. Please try again later or email us directly.";
       }
     });
   }
