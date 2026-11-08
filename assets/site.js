@@ -14,8 +14,23 @@
       const open = menu.classList.toggle("open");
       btn.setAttribute("aria-expanded", String(open));
     });
-    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => menu.classList.remove("open")));
+    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => { menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }));
   }
+
+  // Untermenü „Products“ (Klick/Tastatur; am Desktop zusätzlich per Hover via CSS)
+  document.querySelectorAll(".has-sub").forEach((li) => {
+    const b = li.querySelector(".sub-btn");
+    if (!b) return;
+    const set = (open) => { li.classList.toggle("open", open); b.setAttribute("aria-expanded", String(open)); };
+    b.addEventListener("click", (e) => { e.stopPropagation(); set(!li.classList.contains("open")); });
+    li.addEventListener("keydown", (e) => { if (e.key === "Escape") { set(false); b.focus(); } });
+    document.addEventListener("click", (e) => { if (!li.contains(e.target)) set(false); });
+  });
+
+  // Kontaktformular: Thema aus der Adresse vorwählen (z. B. /?topic=CodeNova%20Blog#contact)
+  const topic = new URLSearchParams(location.search).get("topic");
+  const topicSelect = document.querySelector('#contact-form select[name="topic"]');
+  if (topic && topicSelect) [...topicSelect.options].forEach((o) => { if (o.text === topic) o.selected = true; });
 
   // Einblenden beim Scrollen
   const items = document.querySelectorAll(".reveal");

@@ -17,7 +17,7 @@
   <meta property="og:image" content="https://codenovalabs.net/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css?v=3">
+  <link rel="stylesheet" href="/assets/style.css?v=4">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"CodeNova Labs LLC","url":"https://codenovalabs.net/","logo":"https://codenovalabs.net/apple-touch-icon.png","address":{"@type":"PostalAddress","streetAddress":"30 N Gould St Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}}
   </script>
@@ -30,7 +30,15 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#agents">AI Agents</a></li>
         <li><a href="#process">Process</a></li>
-        <li><a href="#products">Products</a></li>
+        <li class="has-sub">
+          <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-products">Products <span class="caret" aria-hidden="true">▾</span></button>
+          <ul class="sub" id="sub-products">
+            <li><a href="/products/codenova-blog"><strong>CodeNova Blog <span class="soon">soon</span></strong><small>A blog tool that lives on your website</small></a></li>
+            <li><a href="https://myinsta.at" target="_blank" rel="noopener"><strong>myinsta.at <span aria-hidden="true">↗</span></strong><small>Link-in-bio page builder</small></a></li>
+            <li><a href="https://ubxplanner.com" target="_blank" rel="noopener"><strong>UBX Planner <span aria-hidden="true">↗</span></strong><small>Private urbex tour planner</small></a></li>
+            <li><a href="#products" class="sub-all">All products →</a></li>
+          </ul>
+        </li>
         <li><a href="#about">About</a></li>
       </ul>
       <a href="#contact" class="btn btn-lime btn-sm">Start a project</a>
@@ -259,6 +267,7 @@
               <option>Custom software / web platform</option>
               <option>iOS / Android app</option>
               <option>AI agents &amp; automation</option>
+              <option>CodeNova Blog</option>
               <option>Something else</option>
             </select>
           </label>
@@ -287,7 +296,7 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=3" defer></script>
+  <script src="/assets/site.js?v=4" defer></script>
   <script src="/assets/agents.js?v=2" defer></script>
 </body>
 </html>
