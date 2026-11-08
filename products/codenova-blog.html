@@ -14,7 +14,9 @@
   <meta property="og:title" content="CodeNova Blog – The blog tool that lives on your website">
   <meta property="og:description" content="Write, approve and publish – directly on your own website, in your design. Coming soon.">
   <meta property="og:url" content="https://codenovalabs.net/products/codenova-blog">
-  <meta property="og:image" content="https://codenovalabs.net/assets/img/blog/site.webp">
+  <meta property="og:image" content="https://codenovalabs.net/assets/img/blog/og-blog.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/style.css?v=4">
@@ -49,6 +51,7 @@
   <main>
     <!-- Hero -->
     <section class="p-hero">
+      <div class="p-hero-media" aria-hidden="true"><img src="/assets/img/blog/blog-hero.webp" alt="" width="1376" height="768" fetchpriority="high"></div>
       <div class="bg" aria-hidden="true"></div>
       <div class="wrap">
         <div>
@@ -126,10 +129,32 @@
       </div>
     </section>
 
-    <!-- Freigabe & Design -->
+    <!-- Auf der Kundenseite -->
     <section class="divider">
       <div class="wrap">
         <div class="shot flip reveal">
+          <figure class="browser">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>your-website.com/journal?artikel=five-lessons</span></div>
+            <img src="/assets/img/blog/article.webp" width="1400" height="1465" loading="lazy" alt="A published article on a studio website with cover photo, text, subheading and an author box with portrait">
+          </figure>
+          <div>
+            <span class="label">on your website</span>
+            <h3>Readers never leave your site.</h3>
+            <p>Every article opens right on your own website – with your header, your navigation and your footer. Author boxes with photo and bio give your writers a face.</p>
+            <ul class="checks">
+              <li>Overview with category filters and “load more”</li>
+              <li>Article pages with reading time and author box</li>
+              <li>Page title, description and structured data for Google</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Freigabe & Design -->
+    <section class="divider">
+      <div class="wrap">
+        <div class="shot reveal">
           <figure class="browser">
             <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>blog.codenovalabs.net · design</span></div>
             <img src="/assets/img/blog/design.webp" width="1600" height="1155" loading="lazy" alt="Design settings in CodeNova Blog: heading and body fonts, colour pickers and a live preview of an article">
