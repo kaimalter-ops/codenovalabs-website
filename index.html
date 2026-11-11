@@ -7,6 +7,9 @@
   <meta name="description" content="CodeNova Labs builds custom software, iOS and Android apps and AI agents – research-driven, from idea to launch. Makers of myinsta.at and UBX Planner.">
   <meta name="theme-color" content="#121314">
   <link rel="canonical" href="https://codenovalabs.net/">
+  <link rel="alternate" hreflang="en" href="https://codenovalabs.net/">
+  <link rel="alternate" hreflang="de" href="https://codenovalabs.net/de">
+  <link rel="alternate" hreflang="x-default" href="https://codenovalabs.net/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
@@ -17,7 +20,7 @@
   <meta property="og:image" content="https://codenovalabs.net/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/style.css?v=5">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"CodeNova Labs LLC","url":"https://codenovalabs.net/","logo":"https://codenovalabs.net/apple-touch-icon.png","address":{"@type":"PostalAddress","streetAddress":"30 N Gould St Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}}
   </script>
@@ -41,8 +44,11 @@
         </li>
         <li><a href="#about">About</a></li>
       </ul>
-      <a href="#contact" class="btn btn-lime btn-sm">Start a project</a>
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      <div class="nav-end">
+        <nav class="lang-switch" aria-label="Language / Sprache"><a href="/" hreflang="en" lang="en" aria-current="true">EN</a><a href="/de" hreflang="de" lang="de">DE</a></nav>
+        <a href="#contact" class="btn btn-lime btn-sm">Start a project</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      </div>
     </div>
   </header>
 
@@ -263,12 +269,12 @@
           <label><span>Company (optional)</span><input name="company" autocomplete="organization"></label>
           <label><span>What can we help with?</span>
             <select name="topic">
-              <option selected>Website</option>
-              <option>Custom software / web platform</option>
-              <option>iOS / Android app</option>
-              <option>AI agents &amp; automation</option>
-              <option>CodeNova Blog</option>
-              <option>Something else</option>
+              <option value="Website" selected>Website</option>
+              <option value="Custom software / web platform">Custom software / web platform</option>
+              <option value="iOS / Android app">iOS / Android app</option>
+              <option value="AI agents &amp; automation">AI agents &amp; automation</option>
+              <option value="CodeNova Blog">CodeNova Blog</option>
+              <option value="Something else">Something else</option>
             </select>
           </label>
           <label><span>Message</span><textarea name="message" required></textarea></label>
@@ -296,7 +302,7 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=4" defer></script>
-  <script src="/assets/agents.js?v=2" defer></script>
+  <script src="/assets/site.js?v=5" defer></script>
+  <script src="/assets/agents.js?v=3" defer></script>
 </body>
 </html>

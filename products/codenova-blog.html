@@ -7,6 +7,9 @@
   <meta name="description" content="CodeNova Blog lets your team write, approve and publish articles that appear directly on your own website – in your fonts and colours. Coming soon.">
   <meta name="theme-color" content="#121314">
   <link rel="canonical" href="https://codenovalabs.net/products/codenova-blog">
+  <link rel="alternate" hreflang="en" href="https://codenovalabs.net/products/codenova-blog">
+  <link rel="alternate" hreflang="de" href="https://codenovalabs.net/de/products/codenova-blog">
+  <link rel="alternate" hreflang="x-default" href="https://codenovalabs.net/products/codenova-blog">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="website">
@@ -19,7 +22,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/style.css?v=5">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"SoftwareApplication","name":"CodeNova Blog","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"A blog tool for teams that publishes directly on your own website, in your design.","publisher":{"@type":"Organization","name":"CodeNova Labs LLC","url":"https://codenovalabs.net/"}}
   </script>
@@ -44,8 +47,11 @@
         </li>
         <li><a href="/#about">About</a></li>
       </ul>
-      <a href="/?topic=CodeNova%20Blog#contact" class="btn btn-lime btn-sm">Join the waitlist</a>
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      <div class="nav-end">
+        <nav class="lang-switch" aria-label="Language / Sprache"><a href="/products/codenova-blog" hreflang="en" lang="en" aria-current="true">EN</a><a href="/de/products/codenova-blog" hreflang="de" lang="de">DE</a></nav>
+        <a href="/?topic=CodeNova%20Blog#contact" class="btn btn-lime btn-sm">Join the waitlist</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      </div>
     </div>
   </header>
 
@@ -190,13 +196,14 @@
           <span class="label">03 — plans &amp; pricing</span>
           <h2>Simple plans. <span class="lime">Coming soon.</span></h2>
           <p>CodeNova Blog is currently running with our first pilot customer. The plans below are not bookable yet – join the waitlist and we’ll let you know as soon as they are.</p>
+          <div class="cur-switch" role="group" aria-label="Currency"><button type="button" data-cur="usd" aria-pressed="true">$ USD</button><button type="button" data-cur="eur" aria-pressed="false">€ EUR</button></div>
         </div>
         <div class="plans">
           <article class="plan reveal">
             <h3>Start</h3>
             <p class="for">For small teams who want to share news on their own site.</p>
-            <p class="price">$19<small> / month</small></p>
-            <p class="yearly">or $190 / year – 2 months free</p>
+            <p class="price"><span class="cur" data-amount="19">$19</span><small> / month</small></p>
+            <p class="yearly">or <span class="cur" data-amount="190">$190</span> / year – 2 months free</p>
             <ul class="checks">
               <li>1 blog</li>
               <li>Up to 3 team members</li>
@@ -211,8 +218,8 @@
             <span class="tag">most popular</span>
             <h3>Pro</h3>
             <p class="for">For bands, studios and companies with several writers.</p>
-            <p class="price">$39<small> / month</small></p>
-            <p class="yearly">or $390 / year – 2 months free</p>
+            <p class="price"><span class="cur" data-amount="39">$39</span><small> / month</small></p>
+            <p class="yearly">or <span class="cur" data-amount="390">$390</span> / year – 2 months free</p>
             <ul class="checks">
               <li>Everything in Start</li>
               <li>Up to 10 team members</li>
@@ -226,8 +233,8 @@
           <article class="plan reveal">
             <h3>Studio</h3>
             <p class="for">For agencies and brands running more than one blog.</p>
-            <p class="price">$79<small> / month</small></p>
-            <p class="yearly">or $790 / year – 2 months free</p>
+            <p class="price"><span class="cur" data-amount="79">$79</span><small> / month</small></p>
+            <p class="yearly">or <span class="cur" data-amount="790">$790</span> / year – 2 months free</p>
             <ul class="checks">
               <li>Everything in Pro</li>
               <li>Up to 5 blogs</li>
@@ -238,7 +245,7 @@
             <span class="btn btn-ghost" aria-disabled="true">Coming soon</span>
           </article>
         </div>
-        <p class="plan-note reveal">Setting it up yourself is free – paste one short snippet and the blog runs on your site. Prefer us to do it? Setup service from $99: we connect the blog to your website and match your fonts and colours (from $249 for a fully customised look). All prices in USD, excluding taxes. Plans and prices are preliminary and may change before launch.</p>
+        <p class="plan-note reveal">Setting it up yourself is free – paste one short snippet and the blog runs on your site. Prefer us to do it? Setup service from <span class="cur" data-amount="99">$99</span>: we connect the blog to your website and match your fonts and colours (from <span class="cur" data-amount="249">$249</span> for a fully customised look). All prices in <span class="cur-name">USD</span>, excluding taxes. Plans and prices are preliminary and may change before launch.</p>
       </div>
     </section>
 
@@ -301,6 +308,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=4" defer></script>
+  <script src="/assets/site.js?v=5" defer></script>
 </body>
 </html>

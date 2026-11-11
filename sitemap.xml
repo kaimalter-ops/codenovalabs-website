@@ -5,4 +5,9 @@
   <url><loc>https://codenovalabs.net/imprint</loc><priority>0.2</priority></url>
   <url><loc>https://codenovalabs.net/privacy</loc><priority>0.2</priority></url>
   <url><loc>https://codenovalabs.net/terms</loc><priority>0.2</priority></url>
+  <url><loc>https://codenovalabs.net/de</loc><priority>1.0</priority></url>
+  <url><loc>https://codenovalabs.net/de/products/codenova-blog</loc><priority>0.8</priority></url>
+  <url><loc>https://codenovalabs.net/de/impressum</loc><priority>0.2</priority></url>
+  <url><loc>https://codenovalabs.net/de/datenschutz</loc><priority>0.2</priority></url>
+  <url><loc>https://codenovalabs.net/de/nutzungsbedingungen</loc><priority>0.2</priority></url>
 </urlset>

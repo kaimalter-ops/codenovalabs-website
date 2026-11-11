@@ -469,3 +469,15 @@ footer address { font-style: normal; line-height: 1.7; }
   .nav ul { gap: 18px; font-size: 14px; }
   .nav .btn-sm { padding: 8px 12px; font-size: 13px; }
 }
+
+/* Sprache & Währung */
+.nav .nav-end { display: flex; align-items: center; gap: 14px; }
+.lang-switch { display: inline-flex; align-items: center; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; font-family: var(--mono); font-size: 12px; }
+.lang-switch a { padding: 4px 9px; border-radius: 999px; color: var(--muted); letter-spacing: 0.04em; }
+.lang-switch a:hover { color: var(--off); }
+.lang-switch a[aria-current="true"] { background: var(--lime); color: var(--graphite); font-weight: 600; }
+.cur-switch { display: inline-flex; margin-top: 22px; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; font-family: var(--mono); font-size: 13px; }
+.cur-switch button { border: 0; background: none; color: var(--muted); font: inherit; padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.cur-switch button:hover { color: var(--off); }
+.cur-switch button[aria-pressed="true"] { background: var(--lime); color: var(--graphite); font-weight: 600; }
+@media (max-width: 720px) { .nav .nav-end { gap: 10px; } }

@@ -7,9 +7,12 @@
   <meta name="description" content="How CodeNova Labs processes personal data on codenovalabs.net.">
   <meta name="theme-color" content="#121314">
   <link rel="canonical" href="https://codenovalabs.net/privacy">
+  <link rel="alternate" hreflang="en" href="https://codenovalabs.net/privacy">
+  <link rel="alternate" hreflang="de" href="https://codenovalabs.net/de/datenschutz">
+  <link rel="alternate" hreflang="x-default" href="https://codenovalabs.net/privacy">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/style.css?v=5">
 </head>
 <body>
   <header class="nav">
@@ -30,8 +33,11 @@
         </li>
         <li><a href="/#about">About</a></li>
       </ul>
-      <a href="/#contact" class="btn btn-lime btn-sm">Start a project</a>
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      <div class="nav-end">
+        <nav class="lang-switch" aria-label="Language / Sprache"><a href="/privacy" hreflang="en" lang="en" aria-current="true">EN</a><a href="/de/datenschutz" hreflang="de" lang="de">DE</a></nav>
+        <a href="/#contact" class="btn btn-lime btn-sm">Start a project</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">☰</button>
+      </div>
     </div>
   </header>
 
@@ -47,7 +53,7 @@
       <p>This website is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA. When you open a page, the server automatically processes technical data such as your IP address, date and time of the request, the page requested, browser type and operating system. This is necessary to deliver the website securely and to detect misuse.</p>
       <p>For visitors from the EU/EEA, the legal basis is our legitimate interest in a secure and reliable website (Art. 6(1)(f) GDPR). Data may be processed in the USA; transfers are based on the EU-US Data Privacy Framework and/or standard contractual clauses. Log data is deleted after a short period unless it is needed to investigate security incidents.</p>
       <h2>3. No cookies, no tracking</h2>
-      <p>We do not use cookies, analytics or advertising tools on this website. Fonts are hosted on our own server, so no data is sent to third-party font providers.</p>
+      <p>We do not use cookies, analytics or advertising tools on this website. Fonts are hosted on our own server, so no data is sent to third-party font providers. Your choice of language and currency is stored only in your own browser (local storage) and is not sent to us.</p>
       <h2>4. Contact form and email</h2>
       <p>If you contact us via the form or by email, we process the details you provide (name, email address, company if given, topic and message) to answer your request. The legal basis is your request and, where applicable, the preparation of a contract (Art. 6(1)(b) GDPR) and our legitimate interest in answering enquiries (Art. 6(1)(f) GDPR). We delete your data once your request has been fully handled, unless statutory retention obligations apply.</p>
       <p>Form submissions are transmitted encrypted to our own automation server (n8n), which forwards them to us by email. The server is operated by us and hosted with Oracle Cloud Infrastructure (Oracle Corporation) as our processor. To prevent abuse, the IP address of the sender is kept in temporary memory for up to one hour and is not stored permanently.</p>
@@ -76,6 +82,6 @@
     </div>
   </footer>
 
-  <script src="/assets/site.js?v=4" defer></script>
+  <script src="/assets/site.js?v=5" defer></script>
 </body>
 </html>

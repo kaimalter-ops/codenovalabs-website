@@ -35,12 +35,33 @@
 
   // ---------- Teams ----------
   const D = 4.3;
+  const DE = document.documentElement.lang === "de";
+  const L = DE ? {
+    research: { tasks: ["Durchsuche 240 Quellen", "Fasse Marktbericht zusammen", "Prüfe Preise der Konkurrenz"], out: ["12 Leads qualifiziert", "3 Trends gefunden", "Berichtsentwurf fertig"] },
+    sales: { tasks: ["Schreibe Angebot für Lead #482", "Bewerte neue Anfragen", "Aktualisiere CRM-Pipeline"], out: ["Angebot entworfen", "7 heiße Leads", "CRM abgeglichen"] },
+    support: { tasks: ["Beantworte Ticket #1093", "Sortiere 31 neue E-Mails", "Entwerfe FAQ-Update"], out: ["Ticket gelöst", "Posteingang sortiert", "FAQ-Vorschlag"] },
+    finance: { tasks: ["Gleiche 58 Rechnungen ab", "Plane Liquidität", "Markiere ungewöhnliche Kosten"], out: ["Rechnungen abgeglichen", "Prognose aktualisiert", "2 Auffälligkeiten markiert"] },
+    title: "OUTPUT // ZUSAMMENGEFÜHRT", waiting: "Warte auf Agenten …",
+    results: ["Wochenbericht an die Geschäftsführung ✓", "Angebot + Rechnung an Kunden ✓", "Pipeline & Liquidität aktualisiert ✓", "Kundenantwort freigegeben & gesendet ✓"],
+    received: (o, id) => `<b>${o}</b> von ${id}-agent erhalten`, merging: (n) => `Führe ${n}/4 Ströme zusammen …`,
+    stats: (m) => `4 Teams · 8 Agenten · ${m} Aufgaben zusammengeführt`,
+    tipHead: (n) => `${n} TEAM · 2 Agenten`, now: "jetzt", tools: "Tools", online: "● online · sendet an Orchestrator",
+    toolList: { research: "Websuche, RSS, PDFs", sales: "CRM, E-Mail, Kalender", support: "Helpdesk, E-Mail, FAQ", finance: "Buchhaltung, Bankdaten, Tabellen" },
+  } : {
+    title: "OUTPUT // MERGED RESULT", waiting: "Waiting for agents …",
+    results: ["Weekly report sent to CEO ✓", "Offer + invoice sent to client ✓", "Pipeline & cash forecast updated ✓", "Customer reply approved & sent ✓"],
+    received: (o, id) => `received <b>${o}</b> from ${id}-agent`, merging: (n) => `Merging ${n}/4 streams …`,
+    stats: (m) => `4 teams · 8 agents · ${m} tasks merged`,
+    tipHead: (n) => `${n} TEAM · 2 agents`, now: "now", tools: "tools", online: "● online · sends to orchestrator",
+    toolList: { research: "web search, RSS, PDFs", sales: "CRM, email, calendar", support: "helpdesk, email, FAQ", finance: "accounting, bank feed, sheets" },
+  };
   const TEAMS = [
     { id: "research", name: "RESEARCH", x: -D, y: 0, tasks: ["Scanning 240 sources", "Summarising market report", "Checking competitor prices"], out: ["12 leads qualified", "3 trends found", "report draft ready"] },
     { id: "sales", name: "SALES", x: 0, y: -D, tasks: ["Writing offer for lead #482", "Scoring inbound leads", "Updating CRM pipeline"], out: ["offer drafted", "7 hot leads", "CRM synced"] },
     { id: "support", name: "SUPPORT", x: 0, y: D, tasks: ["Answering ticket #1093", "Tagging 31 new emails", "Drafting FAQ update"], out: ["ticket resolved", "inbox triaged", "FAQ proposal"] },
     { id: "finance", name: "FINANCE", x: D, y: 0, tasks: ["Matching 58 invoices", "Forecasting cash flow", "Flagging unusual costs"], out: ["invoices matched", "forecast updated", "2 anomalies flagged"] },
   ];
+  if (DE) TEAMS.forEach((t) => Object.assign(t, L[t.id]));
 
   // Datenleitungen zum Kern (unter den Büros)
   const lanes = el("g");
@@ -83,11 +104,11 @@
   el("rect", { x: hx - 150, y: hy - 58, width: 300, height: 76, rx: 10, fill: "rgba(94,230,255,.06)", stroke: "rgba(94,230,255,.45)" }, holo);
   el("rect", { x: hx - 150, y: hy - 58, width: 300, height: 20, rx: 10, fill: "rgba(94,230,255,.10)" }, holo);
   const hTitle = el("text", { x: hx - 136, y: hy - 44, fill: "#5ee6ff", "font-family": "JetBrains Mono, monospace", "font-size": 10.5, "letter-spacing": "1" }, holo);
-  hTitle.textContent = "OUTPUT // MERGED RESULT";
+  hTitle.textContent = L.title;
   const hLine = el("text", { x: hx - 136, y: hy - 18, fill: "#f4f4f2", "font-family": "JetBrains Mono, monospace", "font-size": 12 }, holo);
   const hBarBg = el("rect", { x: hx - 136, y: hy - 6, width: 272, height: 4, rx: 2, fill: "rgba(244,244,242,.1)" }, holo);
   const hBar = el("rect", { x: hx - 136, y: hy - 6, width: 0, height: 4, rx: 2, fill: "#c6f432" }, holo);
-  hLine.textContent = "Waiting for agents …";
+  hLine.textContent = L.waiting;
   // Text nie breiter als das Panel: notfalls zusammenschieben
   const setLine = (txt) => {
     hLine.textContent = txt; hLine.removeAttribute("textLength"); hLine.removeAttribute("lengthAdjust");
@@ -170,22 +191,22 @@
     ticker.appendChild(row);
     while (ticker.children.length > 5) ticker.firstChild.remove();
   }
-  const RESULTS = ["Weekly report sent to CEO ✓", "Offer + invoice sent to client ✓", "Pipeline & cash forecast updated ✓", "Customer reply approved & sent ✓"];
+  const RESULTS = L.results;
 
   function arrive(t) {
     buffer.add(t.id);
     pulse = 1;
     const o = t.out[Math.floor(Math.random() * t.out.length)];
-    log("orchestrator", `received <b>${o}</b> from ${t.id}-agent`);
+    log("orchestrator", L.received(o, t.id));
     barW = Math.min(272, (buffer.size / TEAMS.length) * 272);
-    setLine(`Merging ${buffer.size}/4 streams …`);
+    setLine(L.merging(buffer.size));
     if (buffer.size === TEAMS.length) {
       buffer.clear(); merged++;
       setTimeout(() => {
         const r = RESULTS[merged % RESULTS.length];
         setLine(r); barW = 272; spawnOut();
         log("orchestrator", `<b>${r}</b>`);
-        stats.textContent = `4 teams · 8 agents · ${merged} tasks merged`;
+        stats.textContent = L.stats(merged);
         setTimeout(() => { barW = 0; }, 1600);
       }, 500);
     }
@@ -205,7 +226,7 @@
   TEAMS.forEach((t) => {
     const show = () => {
       const b = t.g.getBoundingClientRect(), h = hq.getBoundingClientRect();
-      tip.innerHTML = `<b>${t.name} TEAM · 2 agents</b>now: ${t.tasks[0]}<br>tools: ${{ research: "web search, RSS, PDFs", sales: "CRM, email, calendar", support: "helpdesk, email, FAQ", finance: "accounting, bank feed, sheets" }[t.id]}<br><span class="ok">● online · sends to orchestrator</span>`;
+      tip.innerHTML = `<b>${L.tipHead(t.name)}</b>${L.now}: ${t.tasks[0]}<br>${L.tools}: ${L.toolList[t.id]}<br><span class="ok">${L.online}</span>`;
       tip.style.left = Math.min(h.width - 250, Math.max(10, b.left - h.left + b.width / 2 - 115)) + "px";
       tip.style.top = Math.max(50, b.top - h.top - 20) + "px";
       tip.classList.add("on"); t.g.classList.add("focus");
@@ -250,8 +271,8 @@
   }
 
   if (reduce) {
-    setLine("Weekly report sent to CEO ✓"); hBar.setAttribute("width", 272);
-    log("research-agent", "12 leads qualified"); log("sales-agent", "offer drafted"); log("orchestrator", "<b>Weekly report sent to CEO ✓</b>");
+    setLine(RESULTS[0]); hBar.setAttribute("width", 272);
+    log("research-agent", TEAMS[0].out[0]); log("sales-agent", TEAMS[1].out[0]); log("orchestrator", `<b>${RESULTS[0]}</b>`);
     return;
   }
   // Nur animieren, wenn sichtbar

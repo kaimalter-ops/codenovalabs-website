@@ -1,6 +1,40 @@
 // CodeNova Labs – kleine Effekte ohne Bibliotheken
 (() => {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const de = document.documentElement.lang === "de";
+  const store = {
+    get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+    set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* privat */ } },
+  };
+
+  // Sprache: Umschalter merkt die Wahl. Beim ersten Besuch einer englischen Seite mit deutschem Browser → deutsche Fassung.
+  document.querySelectorAll(".lang-switch a[hreflang]").forEach((a) => a.addEventListener("click", () => store.set("cnl-lang", a.hreflang)));
+  const deAlt = document.querySelector('link[rel="alternate"][hreflang="de"]');
+  if (!de && deAlt && !store.get("cnl-lang") && /^de\b/i.test(navigator.language || "")) {
+    location.replace(new URL(deAlt.href).pathname + location.search + location.hash);
+    return;
+  }
+
+  // Währung: gemerkte Wahl, sonst deutsche Seite oder europäische Zeitzone → Euro, sonst Dollar
+  const curSpans = document.querySelectorAll(".cur[data-amount]");
+  if (curSpans.length) {
+    const zone = (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch { return ""; } })();
+    let cur = store.get("cnl-cur") || (de || zone.startsWith("Europe/") ? "eur" : "usd");
+    const apply = () => {
+      curSpans.forEach((el) => {
+        const n = el.dataset.amount;
+        el.textContent = cur === "eur" ? (de ? `${n} €` : `€${n}`) : `$${n}`;
+      });
+      document.querySelectorAll(".cur-name").forEach((el) => { el.textContent = cur === "eur" ? "EUR" : "USD"; });
+      document.querySelectorAll(".cur-switch button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cur === cur)));
+    };
+    document.querySelectorAll(".cur-switch button").forEach((b) => b.addEventListener("click", () => { cur = b.dataset.cur; store.set("cnl-cur", cur); apply(); }));
+    apply();
+  }
+
+  const T = de
+    ? { fill: "> Bitte Name, E-Mail und Nachricht ausfüllen.", soon: "> Das Kontaktformular geht in Kürze online. Danke für deine Geduld!", sending: "> Wird gesendet …", many: "> Zu viele Nachrichten in kurzer Zeit. Bitte versuch es in einer Stunde noch einmal.", check: "> Bitte Name, E-Mail und Nachricht prüfen.", sent: "> Nachricht gesendet. Wir melden uns bald.", fail: "> Da ist etwas schiefgelaufen. Bitte versuch es später noch einmal oder schreib uns direkt eine E-Mail." }
+    : { fill: "> Please fill in name, email and message.", soon: "> Our contact form goes live very soon. Thanks for your patience!", sending: "> Sending …", many: "> Too many messages in a short time. Please try again in an hour.", check: "> Please check your name, email and message.", sent: "> Message sent. We’ll get back to you soon.", fail: "> Something went wrong. Please try again later or email us directly." };
 
   // Jahr im Footer
   const y = document.getElementById("year");
@@ -30,7 +64,7 @@
   // Kontaktformular: Thema aus der Adresse vorwählen (z. B. /?topic=CodeNova%20Blog#contact)
   const topic = new URLSearchParams(location.search).get("topic");
   const topicSelect = document.querySelector('#contact-form select[name="topic"]');
-  if (topic && topicSelect) [...topicSelect.options].forEach((o) => { if (o.text === topic) o.selected = true; });
+  if (topic && topicSelect) [...topicSelect.options].forEach((o) => { if (o.value === topic || o.text === topic) o.selected = true; });
 
   // Einblenden beim Scrollen
   const items = document.querySelectorAll(".reveal");
@@ -95,29 +129,29 @@
       const data = Object.fromEntries(new FormData(form));
       if (data.website) return; // Spam-Falle
       if (!data.name || !data.email || !data.message || !String(data.email).includes("@")) {
-        msg.textContent = "> Please fill in name, email and message.";
+        msg.textContent = T.fill;
         return;
       }
       if (!WEBHOOK_URL) {
-        msg.textContent = "> Our contact form goes live very soon. Thanks for your patience!";
+        msg.textContent = T.soon;
         return;
       }
-      msg.textContent = "> Sending …";
+      msg.textContent = T.sending;
       try {
         const res = await fetch(WEBHOOK_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
         if (res.status === 429) {
-          msg.textContent = "> Too many messages in a short time. Please try again in an hour.";
+          msg.textContent = T.many;
           return;
         }
         if (res.status === 400) {
-          msg.textContent = "> Please check your name, email and message.";
+          msg.textContent = T.check;
           return;
         }
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
-        msg.textContent = "> Message sent. We’ll get back to you soon.";
+        msg.textContent = T.sent;
       } catch {
-        msg.textContent = "> Something went wrong. Please try again later or email us directly.";
+        msg.textContent = T.fail;
       }
     });
   }
