@@ -504,3 +504,22 @@ footer address { font-style: normal; line-height: 1.7; }
 .shot .photo img { display: block; width: 100%; height: auto; }
 .shot.flip .photo { order: 2; }
 @media (max-width: 960px) { .shot.flip .photo { order: 0; } }
+
+/* Newsletter-Vorschau (Produktseite CodeNova Newsletter) */
+.nl-demo { position: relative; overflow: visible; }
+.nl-demo .nl { margin: 18px; padding: 24px; border-radius: 10px; background: #f6f3ee; color: #1d1b19; display: grid; gap: 12px; }
+.nl-demo .nl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 2px solid #1d1b19; }
+.nl-demo .nl-head b { font-family: var(--sans); font-size: 17px; letter-spacing: 0.08em; }
+.nl-demo .nl-head span { font-family: var(--mono); font-size: 11px; color: #6b655e; }
+.nl-demo .nl-img { height: 120px; border-radius: 8px; background: radial-gradient(80% 120% at 20% 10%, #c6f432 0%, transparent 55%), linear-gradient(135deg, #2b2f36, #121314); display: flex; align-items: flex-end; padding: 12px 14px; }
+.nl-demo .nl-img span { font-family: var(--sans); font-weight: 700; font-size: 26px; color: #fff; letter-spacing: -0.02em; }
+.nl-demo .nl h3 { margin: 4px 0 0; font-size: 22px; color: #1d1b19; }
+.nl-demo .nl p { margin: 0; font-size: 14px; line-height: 1.55; color: #3d3833; }
+.nl-demo .nl-dates { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 13px; color: #3d3833; }
+.nl-demo .nl-dates b { display: inline-block; min-width: 58px; font-family: var(--mono); font-weight: 600; color: #1d1b19; }
+.nl-demo .nl-btn { justify-self: start; padding: 10px 22px; border-radius: 999px; background: #1d1b19; color: #f6f3ee; font-weight: 600; font-size: 14px; }
+.nl-demo .nl .nl-foot { margin-top: 6px; padding-top: 10px; border-top: 1px solid #ddd6cc; font-size: 11px; color: #8a8279; }
+.nl-demo .toast { position: absolute; right: -18px; bottom: -22px; display: grid; gap: 2px; padding: 12px 16px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--graphite-3); box-shadow: 0 20px 40px -12px rgba(0,0,0,.6); font-size: 13px; color: var(--muted); }
+.nl-demo .toast b { color: var(--lime); font-weight: 600; }
+@media (max-width: 860px) { .nl-demo .toast { right: 10px; bottom: -18px; } }
+@media (max-width: 480px) { .nl-demo .nl { margin: 12px; padding: 18px; } .nl-demo .nl-head { flex-direction: column; gap: 4px; } }
