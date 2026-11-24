@@ -559,17 +559,17 @@ footer address { font-style: normal; line-height: 1.7; }
 
 /* Darkroom: Teilen-Vorschau */
 .share-mock { margin: 0; padding: 30px; border-radius: 14px; background: linear-gradient(160deg, #2a2b2e, #17181a); border: 1px solid var(--line-strong); box-shadow: 0 40px 90px -20px rgba(0,0,0,.7); }
-.share-mock .bubble { max-width: 440px; margin-left: auto; padding: 6px 6px 4px; border-radius: 14px 14px 4px 14px; background: #1e3a2e; }
+.share-mock .bubble { padding: 8px 8px 4px; border-radius: 14px 14px 4px 14px; background: #1e3a2e; }
 .share-mock .og { border-radius: 10px; overflow: hidden; background: rgba(0,0,0,.28); }
 .share-mock .og img { display: block; width: 100%; height: auto; aspect-ratio: 1.91 / 1; object-fit: cover; }
-.share-mock .og-t { display: grid; gap: 2px; padding: 10px 12px; font-size: 13px; color: var(--muted); }
-.share-mock .og-t b { color: #fff; font-weight: 600; }
+.share-mock .og-t { display: grid; gap: 3px; padding: 14px 16px; font-size: 14px; color: var(--muted); }
+.share-mock .og-t b { color: #fff; font-weight: 600; font-size: 16px; }
 .share-mock .og-t small { font-family: var(--mono); font-size: 11px; color: var(--faint); }
-.share-mock .msg { display: block; padding: 8px 8px 4px; font-size: 14px; color: #e8eee9; }
+.share-mock .msg { display: block; padding: 10px 10px 6px; font-size: 15px; color: #e8eee9; }
 .share-mock .bar { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line-strong); }
 .share-mock .bar-l { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); }
-.share-mock .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.share-mock .btns span { padding: 7px 12px; border: 1px solid var(--line-strong); border-radius: 999px; font-family: var(--mono); font-size: 12px; color: var(--off); }
+.share-mock .btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.share-mock .btns span { padding: 7px 10px; border: 1px solid var(--line-strong); border-radius: 999px; font-family: var(--mono); font-size: 12px; color: var(--off); }
 .share-mock .btns .on { border-color: var(--lime); color: var(--lime); }
 .shot.flip .share-mock { order: 2; }
 @media (max-width: 960px) { .shot.flip .share-mock { order: 0; } }
