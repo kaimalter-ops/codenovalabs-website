@@ -22,9 +22,12 @@
     let cur = store.get("cnl-cur") || (de || zone.startsWith("Europe/") ? "eur" : "usd");
     const apply = () => {
       curSpans.forEach((el) => {
-        const n = el.dataset.amount;
+        // data-eur: eigener Euro-Preis (inkl. MwSt.), sonst gilt data-amount für beide Währungen
+        const raw = cur === "eur" && el.dataset.eur ? el.dataset.eur : el.dataset.amount;
+        const n = de ? raw.replace(".", ",") : raw;
         el.textContent = cur === "eur" ? (de ? `${n} €` : `€${n}`) : `$${n}`;
       });
+      document.querySelectorAll(".cur-tax").forEach((el) => { el.textContent = cur === "eur" ? el.dataset.eur : el.dataset.usd; });
       document.querySelectorAll(".cur-name").forEach((el) => { el.textContent = cur === "eur" ? "EUR" : "USD"; });
       document.querySelectorAll(".cur-switch button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cur === cur)));
     };
